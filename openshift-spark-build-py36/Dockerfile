@@ -30,29 +30,19 @@ RUN yum install -y java-1.8.0-openjdk wget \
 # Add all artifacts to the /tmp/artifacts
 # directory
 COPY \
-    spark-2.4.6-bin-hadoop2.7.tgz \
+    spark-3.2.1-bin-hadoop3.2.tgz \
     /tmp/artifacts/
 
 
 # Environment variables
 ENV \
-    JBOSS_IMAGE_NAME="radanalyticsio/openshift-spark" \
-    JBOSS_IMAGE_VERSION="2.4-latest" \
+    JBOSS_IMAGE_NAME="harryv98/openshift-spark" \
+    JBOSS_IMAGE_VERSION="3.2-latest" \
     PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/spark/bin" \
     SCL_ENABLE_CMD="scl enable rh-python36" \
     SPARK_HOME="/opt/spark" \
     SPARK_INSTALL="/opt/spark-distro" \
     STI_SCRIPTS_PATH="/usr/libexec/s2i" 
-
-# Labels
-LABEL \
-      io.cekit.version="2.2.7"  \
-      io.openshift.s2i.scripts-url="image:///usr/libexec/s2i"  \
-      maintainer="Chad Roberts <croberts@redhat.com>"  \
-      name="radanalyticsio/openshift-spark"  \
-      org.concrt.version="2.2.7"  \
-      sparkversion="2.4.6"  \
-      version="2.4-latest" 
 
 # Add scripts used to configure the image
 COPY modules /tmp/scripts
